@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html style="--construct-scale: 0.375;">
+<head>
+    <meta charset="UTF-8">
+    <title>Watermelon Fruit 2048</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <meta name="generator" content="Scirra Construct">
+    <meta name="description" content="Watermelon Fruit 2048 browser game.">
+
+    <link rel="manifest" href="appmanifest.json">
+    <link rel="apple-touch-icon" sizes="128x128" href="icons/icon-128.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/icon-256.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
+    <link rel="icon" type="image/png" href="icons/icon-512.png">
+
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Splash Screen CSS Eklentisi -->
+    <style>
+        /* Açılış Ekranı (Splash Screen) */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #050505;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999; /* Oyun alanının kesinlikle üstünde kalması için */
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .logo-container {
+            text-align: center;
+            animation: fadeInScale 1.5s ease-out forwards;
+        }
+
+        .logo-img {
+            max-width: 320px;
+            width: 80vw;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+
+    <link rel="modulepreload" href="scripts/dispatchworker.js">
+    <link rel="modulepreload" href="scripts/jobworker.js">
+    <link rel="modulepreload" href="workermain.js">
+    <link rel="modulepreload" href="scripts/c3main.js">
+    <link rel="modulepreload" href="box2d.wasm.js">
+    <link rel="modulepreload" href="scripts/c3runtime.js">
+    <link rel="modulepreload" href="scripts/objRefTable.js">
+    <link rel="preload" href="../../../../../../cdn-cgi/rum" crossorigin="">
+    <link rel="preload" href="data.json" crossorigin="">
+    <link rel="preload" href="icons/loading-logo.png" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet15.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet5.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet0.webp" crossorigin="">
+    <link rel="preload" href="box2d.wasm" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet17.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet16.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet1.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet14.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet13.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet12.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet11.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet10.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet9.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet7.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet3.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet2.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet8.webp" crossorigin="">
+    <link rel="preload" href="images/ingame_next_-sheet0.webp" crossorigin="">
+    <link rel="preload" href="images/drop_fruit-sheet1.webp" crossorigin="">
+    <link rel="preload" href="images/drop_fruit-sheet0.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet6.webp" crossorigin="">
+    <link rel="preload" href="images/sprite-sheet1.webp" crossorigin="">
+    <link rel="preload" href="images/sprite-sheet0.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet18.webp" crossorigin="">
+    <link rel="preload" href="images/shared-0-sheet4.webp" crossorigin="">
+    <link rel="preload" href="images/tiledbackground-sheet0.webp" crossorigin="">
+    <link rel="preload" href="media/music.webm" crossorigin="">
+</head>
+
+<body style="">
+    <!-- Açılış Ekranı (Splash Screen) İçeriği -->
+    <div id="splash-screen">
+        <div class="logo-container">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpurF8Q_lgXJN0fMcH3xrxbmMRJdLqk7w2VtsAZpJLKajqtJBM7I78KagJwJHrLsAq6AmRU_X_bz7ELN0Ri6_8EIurTezTAoVY0uJT5im-EiGVySBJV1BAKqSEfOnEVnyCcryzbex5rsOfCPXx7AGsdd9onVq2koivqg0IhgEd58GGpFh2mcG14QJ8zBt2/s2400/Gemini_Generated_Image_lmi2kzlmi2kzlmi2-Photoroom.png" alt="Syntra Games Logo" class="logo-img">
+        </div>
+    </div>
+
+    <script>
+      if (location.protocol.substr(0, 4) === "file") {
+        alert(
+          "Web exports won't work until you upload them. (When running on the file: protocol, browsers block many features from working for security reasons.)"
+        );
+      }
+    </script>
+
+    <noscript>
+      <div id="notSupportedWrap">
+        <h2 id="notSupportedTitle">This content requires JavaScript</h2>
+        <p class="notSupportedMessage">
+          JavaScript appears to be disabled. Please enable it to view this
+          content.
+        </p>
+      </div>
+    </noscript>
+    
+    <script src="scripts/modernjscheck.js"></script>
+    <script src="scripts/supportcheck.js"></script>
+    <script src="scripts/offlineclient.js" type="module"></script>
+    <script src="scripts/main.js" type="module"></script>
+    <script src="scripts/register-sw.js" type="module"></script>
+    <script type="module" src="../../../../../../../static.cloudflareinsights.com/beacon.min.js/v3d52b47920f24c319d37e2661827c42b1787588026925" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;3359d57608784c59b2d2fd59d10e8171&quot;,&quot;r&quot;:1}" crossorigin="anonymous"></script>
+
+    <canvas width="1280" height="720" style="width: 1280px; height: 720px; margin-left: 0px; margin-top: 0px;"></canvas>
+    <div class="c3htmlwrap" interactive="" style="width: 1280px; height: 720px; margin-left: 0px; margin-top: 0px;"></div>
+    <div class="c3-screen-reader-text" aria-live="polite"></div>
+
+    <!-- Splash Screen Kapatma Fonksiyonu -->
+    <script>
+        // Tam 5 saniye sonra açılış ekranını gizle
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splashScreen = document.getElementById('splash-screen');
+
+                // Açılış ekranını şeffaf yap
+                splashScreen.style.opacity = '0';
+
+                // Animasyon bittikten sonra DOM'dan tamamen kaldır
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                }, 800);
+
+            }, 5000); 
+        });
+    </script>
+</body>
+</html>
